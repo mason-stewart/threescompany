@@ -6,17 +6,12 @@ build:
     # A step that executes `npm install` command
     - npm-install
 
-    # A custom script step, name value is used in the UI
-    # and the code value contains the command that get executed
     - script:
-        name: echo nodejs information
-        code: |
-          echo "node version $(node -v) running"
-          echo "npm version $(npm -v) running"
-
-    - script:
-        name: Bower install
+        # make sure that bower is listed in your package.json
+        # use `npm install --save bower` to add it.
+        name: bower install
         code: node_modules/bower/bin/bower install
 
+    # this assumes you test suite runs via `grunt test`
     - grunt:
         tasks: test
